@@ -56,7 +56,7 @@ desktop.ini
 # Sphinx Build Artifacts
 # ===================================
 docs/_build/
-build/
+#build/
 dist/
 *.egg-info/
 
