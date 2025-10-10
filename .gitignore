@@ -1,0 +1,105 @@
+# ===================================
+# Python Files & Caches
+# ===================================
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Compiled files
+*.so
+*.dll
+*.dylib
+*.pyd
+
+# Bytecode cache
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments
+venv/
+env/
+.venv/
+.env/
+
+# ===================================
+# Jupyter Notebooks
+# ===================================
+.ipynb_checkpoints/
+
+# Jupyter runtime files
+~$*
+
+# ===================================
+# Editors and IDEs
+# ===================================
+
+# VSCode
+.vscode/
+
+# Spyder
+.spyproject/
+
+# PyCharm
+.idea/
+
+# ===================================
+# OS & System Files
+# ===================================
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Icon?
+desktop.ini
+
+# ===================================
+# Sphinx Build Artifacts
+# ===================================
+docs/_build/
+build/
+dist/
+*.egg-info/
+
+# ===================================
+# Logs & Misc
+# ===================================
+*.log
+*.bak
+*.tmp
+*.swp
+*.swo
+
+# ===================================
+# Backup & Archive Files
+# ===================================
+*.zip
+*.tar.gz
+*.rar
+*.7z
+
+# ===================================
+# Test Output
+# ===================================
+htmlcov/
+.coverage
+.tox/
+.nox/
+.pytest_cache/
+
+# ===================================
+# Coverage Reports
+# ===================================
+*.cover
+*.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.lcov
+
+# ===================================
+# MyPy / Pylint / Other Tools
+# ===================================
+.mypy_cache/
+.pyre/
+.pytype/
+.cache/
