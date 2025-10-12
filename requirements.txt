@@ -1,0 +1,5 @@
+coolprop==7.0.0
+matplotlib==3.10.6
+numpy==2.3.3
+pandas==2.3.3
+plotly==6.3.0
