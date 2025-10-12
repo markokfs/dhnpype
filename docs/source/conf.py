@@ -5,7 +5,9 @@
 
 import os
 import sys
-sys.path.insert(0, os.path.abspath('../../src'))
+sys.path.insert(0, os.path.abspath('../../'))
+
+print("PYTHONPATH used by Sphinx:", sys.path[0])
 
 
 # -- Project information -----------------------------------------------------
@@ -23,13 +25,14 @@ extensions = ['sphinx.ext.autodoc',
     'sphinx.ext.napoleon',                                                     # For Google/NumPy-style docstrings
     'sphinx_autodoc_typehints',                                                # Show type hints in docs
     'myst_parser',                                                             # For Markdown files like README.md
+    'sphinx.ext.viewcode'
     #'nbsphinx',                                                                # For Jupyter notebooks (optional)
 ]
 
 templates_path = ['_templates']
 exclude_patterns = []
 
-language = 'Python'
+language = 'en'
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output

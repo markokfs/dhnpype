@@ -15,6 +15,7 @@ def calculate_r_conduction(d_outer_m:float, d_inner_m:float, l_m:float, k_w_per_
     :param l_m: pipe (section) lenght in [m]
     :param k_w_per_mk: the material conductivity coefficient in [W/mK] 
     :return r_cond: conduction resistance in [K/W]
+    
     """
     r_cond = (np.log(d_outer_m / d_inner_m)) / (2 * l_m * k_w_per_mk * np.pi)
     return r_cond
@@ -28,6 +29,7 @@ def calculate_r_convection(d_m:float, l_m:float, h_w_per_m2k:float) -> float:
     :param l_m: pipe (section) lenght in [m]
     :param h_w_per_m2k: the material convection coefficient in [W/m2K] 
     :return r_conv: convection resistance in [K/W]
+    
     """    
     r_conv = 1 / (d_m * l_m * h_w_per_m2k * np.pi)
     return r_conv
@@ -46,6 +48,7 @@ def calculate_r_total(d_pipe_inner_m:float, l_m:float, h_mat1_w_per_m2k:float, d
     :param k_mat2_w_per_mk: the insulation conductivity coefficient in [W/mK]
     :param h_loc_w_per_m2k: heat transfer coefficient based on the location of the pipe section (surface, channel, soil) in [W/m2K] 
     :return r_tot: total thermal resistance in [K/W]
+    
     """     
     r1 = calculate_r_convection(d_pipe_inner_m, l_m, h_mat1_w_per_m2k)                              # convection from the fluid to the pipe material
     r2 = calculate_r_conduction(d_pipe_outer_m, d_pipe_inner_m, l_m, k_mat1_w_per_mk)               # heat transfer through the pipe material
@@ -64,6 +67,7 @@ def calculate_heat_flow_loss(r_tot:float, t_outer:float, t_inner:float) -> float
     :param t_outer: ambient temperature in [K]
     :param t_inner: temperature of the fluid inside the pipeline in [K]
     :return qdot_loss: heat loss flow in [W]
+    
     """    
     qdot_loss = (t_inner - t_outer) / r_tot
     return qdot_loss
@@ -78,6 +82,7 @@ def calculate_heat_flow(t_high:float, t_low:float, mdot:float, cp:float) -> floa
     :param mdot: mass flow in [kg/s]
     :param cp: specific heating capacity coefficient in [Ws/kgK]
     :return qdot: heat flow in [W]
+    
     """    
     delta_t = t_high - t_low
     qdot = mdot * cp * delta_t
@@ -91,6 +96,8 @@ def calculate_flow_velocity(den_fluid:float, mdot_flow:float, d_pipe_inner:float
     :param den_fluid: density of the fluid in [kg/m3]
     :param mdot_flow: fluid mass flow in [kg/s]
     :param d_pipe_inner: the internal diameter of the pipeline section in [m] 
+    :return v_flow: velocity of flow [m/s]
+    
     """      
     v_flow = (4 * mdot_flow) / (np.pi * den_fluid * (d_pipe_inner * d_pipe_inner))
     return v_flow
@@ -102,6 +109,7 @@ def calculate_average_flow_velocity(v_flow_m_per_s:list) -> float:
 
     :param v_flow_m_per_s: list of fluid values in each pipe section in [m/s]
     :return v_avg_m_per_s: average flow velocity in the pipeline in [m/s]
+    
     """    
     i = 0
     v_sum = 0
@@ -118,6 +126,7 @@ def select_heat_transfer_coeff(location:str) -> float:
 
     :param location: position of pipeline section
     :return h_conv: value of the heat transfer coefficient read from data table
+    
     """    
     if (location == 'surface'):
         h_conv = ThermalCoeff.h_surface_w_per_m2k
@@ -138,6 +147,7 @@ def select_ambient_temperature(location:str) -> float:
 
     :param location: position of pipeline section
     :return t_amb: temperature of the sorounding ambient in [°C]
+    
     """        
     if (location == 'surface'):
         t_amb = AmbientTemp.t_surface_c
@@ -159,6 +169,7 @@ def calculate_pipe_internal_diameter(d_pipe_external:float, th_pipe:float) -> fl
     :param d_pipe_external: external diameter of the chosen pipe section in [m]
     :param th_pipe: pipe wall thickness of the chosen section in [m]
     :return d_pipe_internal: internal diameter of the chosen pipe section in [m]
+    
     """  
     d_pipe_internal = d_pipe_external - (2 * th_pipe)
     return d_pipe_internal
@@ -171,6 +182,7 @@ def calculate_insulation_external_diameter(d_pipe_external:float, th_insulation:
     :param d_pipe_external: external diameter of the chosen pipe section in [m]
     :param th_insulation: insulation thickness of the chosen section in [m]
     :return d_insulation_external: external diameter of the chosen section in [m]
+    
     """  
     d_insulation_external = d_pipe_external + (2 * th_insulation)
     return d_insulation_external
@@ -184,6 +196,7 @@ def calculate_insulation_thickness(location:str, d_pipe_nominal:str, th_insulati
     :param d_pipe_external: External pipe diameter at the given index in [m]
     :param th_insulation_dict: Dictionary with thickness data
     :return: th_insulation: Insulation thickness in [m]
+    
     """
     if location not in th_insulation_dict:
         raise ValueError(f"Invalid location '{location}'. Expected one of: {list(th_insulation_dict.keys())}.")
@@ -209,9 +222,11 @@ def calculate_output_temperature(t_in:float, t_amb:float, mdot:float, cp:float,
     :param cp: Specific heat coefficient in [Ws/kgK]
     :param r_tot: Total thermal resistance in [K/W]
     :param tolerance: Convergence tolerance (default 0.01 = 1%)
-    :return
+    
+    :returns:
         t_out_c: Final outlet temperature in [°C]
         qdot_loss: Final heat flow loss in [W]
+        
     """
     qdot_loss_initial = calculate_heat_flow_loss(r_tot, t_amb, t_in)
     
@@ -253,6 +268,7 @@ def calculate_fluid_density(p:float, t:float, fluid:str = "Water") -> float:
     :param t: temperature in [K]
     :param fluid: fluid type
     :return den: density in [kg/m3]
+    
     """        
     den = CP.PropsSI("D", "P", p, "T", t, fluid)
     return den
@@ -266,6 +282,7 @@ def calculate_fluid_specific_heat(p:float, t:float, fluid:str = "Water") -> floa
     :param t: temperature in [K]
     :param fluid: fluid type
     :return cp: specific heat coefficient in [Ws/kgK]
+    
     """        
     cp = CP.PropsSI("C", "P", p, "T", t, fluid) 
     

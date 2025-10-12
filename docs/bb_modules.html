@@ -1,0 +1,663 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="Python" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>branch &mdash; DHNpype 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=8eae9801"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Author" href="c_author.html" />
+    <link rel="prev" title="Utility modules" href="ba_utils.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            DHNpype
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="a_overview.html">Software Overview</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="b_source.html">Modules &amp; Functions</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="b_source.html#subpackage">Subpackage</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="b_source.html#modules">Modules</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">branch</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#src.branch.Branch"><code class="docutils literal notranslate"><span class="pre">Branch</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-src.config_data">config_data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#src.config_data.AmbientTemp"><code class="docutils literal notranslate"><span class="pre">AmbientTemp</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#src.config_data.BranchInitialConfig"><code class="docutils literal notranslate"><span class="pre">BranchInitialConfig</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-src.data_input">data_input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-src.data_output">data_output</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#src.data_output.PipeRow"><code class="docutils literal notranslate"><span class="pre">PipeRow</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#src.data_output.SystemRow"><code class="docutils literal notranslate"><span class="pre">SystemRow</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-src.main">main</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#src.main.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#src.main.plot_branch_dir"><code class="docutils literal notranslate"><span class="pre">plot_branch_dir()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#src.main.plot_config"><code class="docutils literal notranslate"><span class="pre">plot_config()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#src.main.plot_losses"><code class="docutils literal notranslate"><span class="pre">plot_losses()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#src.main.plot_temperature"><code class="docutils literal notranslate"><span class="pre">plot_temperature()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-src.model_param">model_param</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#src.model_param.PipeSectionLocation"><code class="docutils literal notranslate"><span class="pre">PipeSectionLocation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#src.model_param.ThermalCoeff"><code class="docutils literal notranslate"><span class="pre">ThermalCoeff</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-src.plots">plots</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#src.plots.plot_branch"><code class="docutils literal notranslate"><span class="pre">plot_branch()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#src.plots.plot_heat_flow_loss"><code class="docutils literal notranslate"><span class="pre">plot_heat_flow_loss()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#src.plots.plot_heat_flow_loss_nodes"><code class="docutils literal notranslate"><span class="pre">plot_heat_flow_loss_nodes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#src.plots.plot_insulation"><code class="docutils literal notranslate"><span class="pre">plot_insulation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#src.plots.plot_mass_flow"><code class="docutils literal notranslate"><span class="pre">plot_mass_flow()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#src.plots.plot_normalised_heat_flow_loss"><code class="docutils literal notranslate"><span class="pre">plot_normalised_heat_flow_loss()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#src.plots.plot_output_heatmap"><code class="docutils literal notranslate"><span class="pre">plot_output_heatmap()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#src.plots.plot_temperature"><code class="docutils literal notranslate"><span class="pre">plot_temperature()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#src.plots.plot_total_heat_flow_loss"><code class="docutils literal notranslate"><span class="pre">plot_total_heat_flow_loss()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="c_author.html">Author</a></li>
+<li class="toctree-l1"><a class="reference internal" href="d_license.html">Software License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">DHNpype</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="b_source.html">Modules &amp; Functions</a></li>
+      <li class="breadcrumb-item active">branch</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/bb_modules.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-src.branch">
+<span id="branch"></span><h1>branch<a class="headerlink" href="#module-src.branch" title="Link to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="src.branch.Branch">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.branch.</span></span><span class="sig-name descname"><span class="pre">Branch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">initial_values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">th_values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/branch.html#Branch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.branch.Branch" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.branch.Branch.calculate_branch_length">
+<span class="sig-name descname"><span class="pre">calculate_branch_length</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/branch.html#Branch.calculate_branch_length"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.branch.Branch.calculate_branch_length" title="Link to this definition"></a></dt>
+<dd><p>Sums lengths of all pipeline elements to get the length of the analysed branch.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Length in [m]</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.branch.Branch.calculate_return">
+<span class="sig-name descname"><span class="pre">calculate_return</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/branch.html#Branch.calculate_return"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.branch.Branch.calculate_return" title="Link to this definition"></a></dt>
+<dd><p>Performs calculations only for the return branch.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.branch.Branch.calculate_supply">
+<span class="sig-name descname"><span class="pre">calculate_supply</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/branch.html#Branch.calculate_supply"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.branch.Branch.calculate_supply" title="Link to this definition"></a></dt>
+<dd><p>Performs calculations only for the supply branch.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.branch.Branch.calculate_system_heat_flow">
+<span class="sig-name descname"><span class="pre">calculate_system_heat_flow</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/branch.html#Branch.calculate_system_heat_flow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.branch.Branch.calculate_system_heat_flow" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Gathers total heat flow data from the supply and return calculations to calculate the total system heat flow:</dt><dd><p>Q̇ _total_system = Q̇ _total_supply - Q̇ _total_return.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.branch.Branch.class_instances_created">
+<span class="sig-name descname"><span class="pre">class_instances_created</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#src.branch.Branch.class_instances_created" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.branch.Branch.get_class_instance_count">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_class_instance_count</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/branch.html#Branch.get_class_instance_count"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.branch.Branch.get_class_instance_count" title="Link to this definition"></a></dt>
+<dd><p>Returns the number of Branch objects created (used for tracking the number of instances created).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Number of class instances</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.branch.Branch.print_input_data">
+<span class="sig-name descname"><span class="pre">print_input_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/branch.html#Branch.print_input_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.branch.Branch.print_input_data" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Outputs to terminal information about input data:</dt><dd><ul class="simple">
+<li><p>Insulation damage mode (average or per element)</p></li>
+<li><p>Level of damage in percent</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<hr class="docutils" />
+<section id="module-src.config_data">
+<span id="config-data"></span><h1>config_data<a class="headerlink" href="#module-src.config_data" title="Link to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="src.config_data.AmbientTemp">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.config_data.</span></span><span class="sig-name descname"><span class="pre">AmbientTemp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t_surface_c</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_channel_c</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">30</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_soil_c</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/config_data.html#AmbientTemp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.config_data.AmbientTemp" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.config_data.AmbientTemp.t_channel_c">
+<span class="sig-name descname"><span class="pre">t_channel_c</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">30</span></em><a class="headerlink" href="#src.config_data.AmbientTemp.t_channel_c" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.config_data.AmbientTemp.t_soil_c">
+<span class="sig-name descname"><span class="pre">t_soil_c</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">10</span></em><a class="headerlink" href="#src.config_data.AmbientTemp.t_soil_c" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.config_data.AmbientTemp.t_surface_c">
+<span class="sig-name descname"><span class="pre">t_surface_c</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3.5</span></em><a class="headerlink" href="#src.config_data.AmbientTemp.t_surface_c" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="src.config_data.BranchInitialConfig">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.config_data.</span></span><span class="sig-name descname"><span class="pre">BranchInitialConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fluid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Water'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p_nominal_pa</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1600000.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_in_supply_c</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">134.443</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_in_return_c</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">84.4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_consumer_release_c</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">85</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vdot_m3_per_h</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">189.92</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">th_avg_ins_damage_m</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.017</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/config_data.html#BranchInitialConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.config_data.BranchInitialConfig" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.config_data.BranchInitialConfig.fluid">
+<span class="sig-name descname"><span class="pre">fluid</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Water'</span></em><a class="headerlink" href="#src.config_data.BranchInitialConfig.fluid" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.config_data.BranchInitialConfig.p_nominal_pa">
+<span class="sig-name descname"><span class="pre">p_nominal_pa</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1600000.0</span></em><a class="headerlink" href="#src.config_data.BranchInitialConfig.p_nominal_pa" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.config_data.BranchInitialConfig.t_consumer_release_c">
+<span class="sig-name descname"><span class="pre">t_consumer_release_c</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">85</span></em><a class="headerlink" href="#src.config_data.BranchInitialConfig.t_consumer_release_c" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.config_data.BranchInitialConfig.t_in_return_c">
+<span class="sig-name descname"><span class="pre">t_in_return_c</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">84.4</span></em><a class="headerlink" href="#src.config_data.BranchInitialConfig.t_in_return_c" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.config_data.BranchInitialConfig.t_in_supply_c">
+<span class="sig-name descname"><span class="pre">t_in_supply_c</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">134.443</span></em><a class="headerlink" href="#src.config_data.BranchInitialConfig.t_in_supply_c" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.config_data.BranchInitialConfig.th_avg_ins_damage_m">
+<span class="sig-name descname"><span class="pre">th_avg_ins_damage_m</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.017</span></em><a class="headerlink" href="#src.config_data.BranchInitialConfig.th_avg_ins_damage_m" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.config_data.BranchInitialConfig.vdot_m3_per_h">
+<span class="sig-name descname"><span class="pre">vdot_m3_per_h</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">189.92</span></em><a class="headerlink" href="#src.config_data.BranchInitialConfig.vdot_m3_per_h" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-src.data_input">
+<span id="data-input"></span><h1>data_input<a class="headerlink" href="#module-src.data_input" title="Link to this heading"></a></h1>
+</section>
+<section id="module-src.data_output">
+<span id="data-output"></span><h1>data_output<a class="headerlink" href="#module-src.data_output" title="Link to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="src.data_output.PipeRow">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.data_output.</span></span><span class="sig-name descname"><span class="pre">PipeRow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">l_tot</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_in</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mdot</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qdot_loss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qdotnorm_loss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qdot_loss_tot</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v_fluid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mdot_consumer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qdot_consumer_abs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qdot_consumer_act</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qdot_tot</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/data_output.html#PipeRow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.data_output.PipeRow" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.data_output.PipeRow.convert_to_dict_pipe">
+<span class="sig-name descname"><span class="pre">convert_to_dict_pipe</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/data_output.html#PipeRow.convert_to_dict_pipe"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.data_output.PipeRow.convert_to_dict_pipe" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.data_output.PipeRow.l_tot">
+<span class="sig-name descname"><span class="pre">l_tot</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><a class="headerlink" href="#src.data_output.PipeRow.l_tot" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.data_output.PipeRow.lat">
+<span class="sig-name descname"><span class="pre">lat</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><a class="headerlink" href="#src.data_output.PipeRow.lat" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.data_output.PipeRow.lon">
+<span class="sig-name descname"><span class="pre">lon</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><a class="headerlink" href="#src.data_output.PipeRow.lon" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.data_output.PipeRow.mdot">
+<span class="sig-name descname"><span class="pre">mdot</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><a class="headerlink" href="#src.data_output.PipeRow.mdot" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.data_output.PipeRow.mdot_consumer">
+<span class="sig-name descname"><span class="pre">mdot_consumer</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><a class="headerlink" href="#src.data_output.PipeRow.mdot_consumer" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.data_output.PipeRow.qdot_consumer_abs">
+<span class="sig-name descname"><span class="pre">qdot_consumer_abs</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><a class="headerlink" href="#src.data_output.PipeRow.qdot_consumer_abs" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.data_output.PipeRow.qdot_consumer_act">
+<span class="sig-name descname"><span class="pre">qdot_consumer_act</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><a class="headerlink" href="#src.data_output.PipeRow.qdot_consumer_act" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.data_output.PipeRow.qdot_loss">
+<span class="sig-name descname"><span class="pre">qdot_loss</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><a class="headerlink" href="#src.data_output.PipeRow.qdot_loss" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.data_output.PipeRow.qdot_loss_tot">
+<span class="sig-name descname"><span class="pre">qdot_loss_tot</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><a class="headerlink" href="#src.data_output.PipeRow.qdot_loss_tot" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.data_output.PipeRow.qdot_tot">
+<span class="sig-name descname"><span class="pre">qdot_tot</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><a class="headerlink" href="#src.data_output.PipeRow.qdot_tot" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.data_output.PipeRow.qdotnorm_loss">
+<span class="sig-name descname"><span class="pre">qdotnorm_loss</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><a class="headerlink" href="#src.data_output.PipeRow.qdotnorm_loss" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.data_output.PipeRow.t_in">
+<span class="sig-name descname"><span class="pre">t_in</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><a class="headerlink" href="#src.data_output.PipeRow.t_in" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.data_output.PipeRow.v_fluid">
+<span class="sig-name descname"><span class="pre">v_fluid</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><a class="headerlink" href="#src.data_output.PipeRow.v_fluid" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="src.data_output.SystemRow">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.data_output.</span></span><span class="sig-name descname"><span class="pre">SystemRow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">l_tot</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qdot_system</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/data_output.html#SystemRow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.data_output.SystemRow" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.data_output.SystemRow.convert_to_dict_system">
+<span class="sig-name descname"><span class="pre">convert_to_dict_system</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/data_output.html#SystemRow.convert_to_dict_system"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.data_output.SystemRow.convert_to_dict_system" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.data_output.SystemRow.l_tot">
+<span class="sig-name descname"><span class="pre">l_tot</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><a class="headerlink" href="#src.data_output.SystemRow.l_tot" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.data_output.SystemRow.lat">
+<span class="sig-name descname"><span class="pre">lat</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><a class="headerlink" href="#src.data_output.SystemRow.lat" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.data_output.SystemRow.lon">
+<span class="sig-name descname"><span class="pre">lon</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><a class="headerlink" href="#src.data_output.SystemRow.lon" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.data_output.SystemRow.qdot_system">
+<span class="sig-name descname"><span class="pre">qdot_system</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><a class="headerlink" href="#src.data_output.SystemRow.qdot_system" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-src.main">
+<span id="main"></span><h1>main<a class="headerlink" href="#module-src.main" title="Link to this heading"></a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="src.main.main">
+<span class="sig-prename descclassname"><span class="pre">src.main.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/main.html#main"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.main.main" title="Link to this definition"></a></dt>
+<dd><p>Runs the analysis in a Python environment.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.main.plot_branch_dir">
+<span class="sig-prename descclassname"><span class="pre">src.main.</span></span><span class="sig-name descname"><span class="pre">plot_branch_dir</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/main.html#plot_branch_dir"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.main.plot_branch_dir" title="Link to this definition"></a></dt>
+<dd><p>Calls the plot_branch() function in plots.py and plots the supply and return configuration of the network separately.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.main.plot_config">
+<span class="sig-prename descclassname"><span class="pre">src.main.</span></span><span class="sig-name descname"><span class="pre">plot_config</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/main.html#plot_config"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.main.plot_config" title="Link to this definition"></a></dt>
+<dd><p>Calls the plot_branch() function in plots.py and plots the supply and return pipelines on a map. It also plots insulation thicknesses of supply and return line from the plot_insulation() function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.main.plot_losses">
+<span class="sig-prename descclassname"><span class="pre">src.main.</span></span><span class="sig-name descname"><span class="pre">plot_losses</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/main.html#plot_losses"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.main.plot_losses" title="Link to this definition"></a></dt>
+<dd><dl class="simple">
+<dt>Calls the functions to plot heat flow losses in a static plot:</dt><dd><ul class="simple">
+<li><p>plot_heat_flow_loss(): for absolute heat flow losses</p></li>
+<li><p>plot_normalised_heat_flow_loss(): shows losses that have been normalised with respect to the length of the pipeline section</p></li>
+</ul>
+</dd>
+</dl>
+<p>Also calls the plot_output_heatmap() function in plots.py to plot interactive heatmaps of results in the supply and return line superimposed on the map.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.main.plot_temperature">
+<span class="sig-prename descclassname"><span class="pre">src.main.</span></span><span class="sig-name descname"><span class="pre">plot_temperature</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/main.html#plot_temperature"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.main.plot_temperature" title="Link to this definition"></a></dt>
+<dd><p>Calls the plot_supply_temperature() function in plots.py and plots the supply and return temperatures.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-src.model_param">
+<span id="model-param"></span><h1>model_param<a class="headerlink" href="#module-src.model_param" title="Link to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="src.model_param.PipeSectionLocation">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.model_param.</span></span><span class="sig-name descname"><span class="pre">PipeSectionLocation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">values</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/model_param.html#PipeSectionLocation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.model_param.PipeSectionLocation" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.model_param.PipeSectionLocation.loc1">
+<span class="sig-name descname"><span class="pre">loc1</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'channel'</span></em><a class="headerlink" href="#src.model_param.PipeSectionLocation.loc1" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.model_param.PipeSectionLocation.loc2">
+<span class="sig-name descname"><span class="pre">loc2</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'surface'</span></em><a class="headerlink" href="#src.model_param.PipeSectionLocation.loc2" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.model_param.PipeSectionLocation.loc3">
+<span class="sig-name descname"><span class="pre">loc3</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'soil'</span></em><a class="headerlink" href="#src.model_param.PipeSectionLocation.loc3" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="src.model_param.ThermalCoeff">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.model_param.</span></span><span class="sig-name descname"><span class="pre">ThermalCoeff</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">h_water_w_per_m2k</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3000.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">h_surface_w_per_m2k</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">200.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">h_channel_w_per_m2k</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">h_soil_w_per_m2k</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k_pipe_w_per_mk</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">43.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k_ins_w_per_mk</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.03</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k_ins_damaged_w_per_mk</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.03</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/model_param.html#ThermalCoeff"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.model_param.ThermalCoeff" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.model_param.ThermalCoeff.h_channel_w_per_m2k">
+<span class="sig-name descname"><span class="pre">h_channel_w_per_m2k</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">100.0</span></em><a class="headerlink" href="#src.model_param.ThermalCoeff.h_channel_w_per_m2k" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.model_param.ThermalCoeff.h_soil_w_per_m2k">
+<span class="sig-name descname"><span class="pre">h_soil_w_per_m2k</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3.0</span></em><a class="headerlink" href="#src.model_param.ThermalCoeff.h_soil_w_per_m2k" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.model_param.ThermalCoeff.h_surface_w_per_m2k">
+<span class="sig-name descname"><span class="pre">h_surface_w_per_m2k</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">200.0</span></em><a class="headerlink" href="#src.model_param.ThermalCoeff.h_surface_w_per_m2k" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.model_param.ThermalCoeff.h_water_w_per_m2k">
+<span class="sig-name descname"><span class="pre">h_water_w_per_m2k</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3000.0</span></em><a class="headerlink" href="#src.model_param.ThermalCoeff.h_water_w_per_m2k" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.model_param.ThermalCoeff.k_ins_damaged_w_per_mk">
+<span class="sig-name descname"><span class="pre">k_ins_damaged_w_per_mk</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.03</span></em><a class="headerlink" href="#src.model_param.ThermalCoeff.k_ins_damaged_w_per_mk" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.model_param.ThermalCoeff.k_ins_w_per_mk">
+<span class="sig-name descname"><span class="pre">k_ins_w_per_mk</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.03</span></em><a class="headerlink" href="#src.model_param.ThermalCoeff.k_ins_w_per_mk" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.model_param.ThermalCoeff.k_pipe_w_per_mk">
+<span class="sig-name descname"><span class="pre">k_pipe_w_per_mk</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">43.0</span></em><a class="headerlink" href="#src.model_param.ThermalCoeff.k_pipe_w_per_mk" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-src.plots">
+<span id="plots"></span><h1>plots<a class="headerlink" href="#module-src.plots" title="Link to this heading"></a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="src.plots.plot_branch">
+<span class="sig-prename descclassname"><span class="pre">src.plots.</span></span><span class="sig-name descname"><span class="pre">plot_branch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/plots.html#plot_branch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.plots.plot_branch" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.plots.plot_heat_flow_loss">
+<span class="sig-prename descclassname"><span class="pre">src.plots.</span></span><span class="sig-name descname"><span class="pre">plot_heat_flow_loss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/plots.html#plot_heat_flow_loss"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.plots.plot_heat_flow_loss" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.plots.plot_heat_flow_loss_nodes">
+<span class="sig-prename descclassname"><span class="pre">src.plots.</span></span><span class="sig-name descname"><span class="pre">plot_heat_flow_loss_nodes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/plots.html#plot_heat_flow_loss_nodes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.plots.plot_heat_flow_loss_nodes" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.plots.plot_insulation">
+<span class="sig-prename descclassname"><span class="pre">src.plots.</span></span><span class="sig-name descname"><span class="pre">plot_insulation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/plots.html#plot_insulation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.plots.plot_insulation" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.plots.plot_mass_flow">
+<span class="sig-prename descclassname"><span class="pre">src.plots.</span></span><span class="sig-name descname"><span class="pre">plot_mass_flow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/plots.html#plot_mass_flow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.plots.plot_mass_flow" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.plots.plot_normalised_heat_flow_loss">
+<span class="sig-prename descclassname"><span class="pre">src.plots.</span></span><span class="sig-name descname"><span class="pre">plot_normalised_heat_flow_loss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/plots.html#plot_normalised_heat_flow_loss"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.plots.plot_normalised_heat_flow_loss" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.plots.plot_output_heatmap">
+<span class="sig-prename descclassname"><span class="pre">src.plots.</span></span><span class="sig-name descname"><span class="pre">plot_output_heatmap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value_column</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/plots.html#plot_output_heatmap"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.plots.plot_output_heatmap" title="Link to this definition"></a></dt>
+<dd><p>Plot line segments on a map using a single DataFrame that contains
+longitude, latitude, and a value column for coloring.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>direction</strong> (<em>str</em>) -- Pipeline direction flow - 'supply' or 'return'.</p></li>
+<li><p><strong>value_column</strong> (<em>str</em>) -- Column in the dataframe to use for coloring the segments.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.plots.plot_temperature">
+<span class="sig-prename descclassname"><span class="pre">src.plots.</span></span><span class="sig-name descname"><span class="pre">plot_temperature</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/plots.html#plot_temperature"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.plots.plot_temperature" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.plots.plot_total_heat_flow_loss">
+<span class="sig-prename descclassname"><span class="pre">src.plots.</span></span><span class="sig-name descname"><span class="pre">plot_total_heat_flow_loss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/plots.html#plot_total_heat_flow_loss"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.plots.plot_total_heat_flow_loss" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="ba_utils.html" class="btn btn-neutral float-left" title="Utility modules" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="c_author.html" class="btn btn-neutral float-right" title="Author" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Marko Keber.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
