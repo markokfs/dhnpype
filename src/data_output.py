@@ -5,6 +5,10 @@ from dataclasses import dataclass
 
 @dataclass 
 class PipeRow:
+    """
+    Defines names and types of DataFrames columns for the results of supply and return calculations.
+    
+    """
     lat: float
     lon: float
     l_tot: float
@@ -69,6 +73,10 @@ df_return_out = pd.DataFrame({col: pd.Series(dtype=dt) for col, dt in pipe_colum
 
 @dataclass 
 class SystemRow:
+    """
+    Defines names and types of DataFrame columns for the results of system heat flow calculations.
+    
+    """
     lat: float
     lon: float
     l_tot: float

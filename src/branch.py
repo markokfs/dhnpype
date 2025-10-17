@@ -21,7 +21,8 @@ from utils.exceptions import SupplyDataMissingError
 from model_param import ThermalCoeff, PipeSectionLocation
 
 
-# Getting thickness data
+#==============================================================================
+# Reading thickness data from the JSON data:
 thickness_data_location = "../data/insulation_thickness.json"
 
 try:
@@ -33,8 +34,30 @@ except FileNotFoundError:
     th_mm = {}
 
 
-# Calculations
+#==========================| CALCULATIONS |====================================
 class Branch:
+    """
+    Evaluates a single branch of a district heatng or cooling network.
+    Performs calculations of pipe sections sequentiall for the supply line first and then for the return line.
+    
+    Attributes:
+        initial_values (None): Data required to set the initial configuration of the system. Refer to data in the BranchInitialConfig class in config_data.py.
+        th_values (None): Pipe and insulation thickness data. Data can be read from a dedicated JSON file.
+        damage_mode (str): Defines how insulation damage is modelled. See the __init__ definition for more information.
+        damage (float): Amaunt of insulation damage. See the __initi__ definition for more information.
+        
+    Helper methods:
+        _calculate_internal_diameter()
+        get_class_instance_count()
+        print_input_data()
+        calculate_branch_length()
+        
+    Calculation methods:
+        calculate_supply()
+        calculate_return()
+        calculate_system_heat_flow
+            
+    """
     
     class_instances_created = 0                                                # used to check the number of branches created with the Branch class (class attribute only!)
 
@@ -42,6 +65,19 @@ class Branch:
     _DAMAGE_MODE_ELEMENT = "element"
       
     def __init__(self, initial_values = None, th_values: dict = None, **kwargs):
+        """
+        Constructs attributes for the Branch class.
+        
+        :param initial_values: Initial configuration data read from the BranchInitialConfig. Alternatively, values can be passed directly to the class (suggested form: dict).
+        :param th_values: Pipe and insulation thickness data from 'insulation_thickness.json' in the 'data' folder. Alternatively, values can be passed directly to the class (suggested form: dict)
+        :param damage_mode (optional): Defines how insulation damage is modelled. Available options: 'average' or 'element'. Default: 'average'.
+                                   Option 'average': Average residual thickness value is assigned to all sections of the pipeline with damaged insulation. 
+                                   Option 'element': Each element has residual thickness assigned in the input file.
+        :param damage (optional): Value(s) of damaged insulation thickness. For the 'average' damage mode, the thickness value is defined in the BranchInitialConfig class in config_data.py. Alternatively, the value can be passed directly to the class.
+                                For the 'element' damage mode, thickness values are read from the input file as percentage of intact thickness for the section's nominal diameter.
+        
+        """
+        
         self.iv = initial_values or BranchInitialConfig()
         self.th_all = th_values or th_mm                                       # pipe & insulation thickness from data in the JSON file
         
@@ -78,21 +114,21 @@ class Branch:
    
     #______________________ Helper methods ____________________________________
       
-    def _calculate_internal_diameter(self, d_nominal:str, d_external_m:float) -> float:
+    def _calculate_internal_diameter(self, d_nominal:str, d_external:float) -> float:
         """
         Returns the pipe internal diameter for a given nominal pipe size.
         Used to calculate initial values.
-
-        Returns
-        -------
-        float
-            Internal diameter in [m]
+        
+        :param d_nominal: Nominal diameter of a pipe section in [mm]
+        :param d_external: External diameter of a pipe section in [m]
+        :return d_pipe_int: Internal diameter in [m]
+            
         """
         if d_nominal not in self.th_pipe:
             raise KeyError(f"Nominal pipe size {d_nominal} not found in pipe wall thickness data. Please choose a different pipe size.")
         
-        th_pipe_m = self.th_pipe[d_nominal] / 1000                             # pipe thickness
-        d_pipe_int = d_external_m - (2 * th_pipe_m)                            # pipe internal diameter         
+        th_pipe = self.th_pipe[d_nominal] / 1000                               # pipe thickness [m]
+        d_pipe_int = d_external - (2 * th_pipe)                                # pipe internal diameter [m]         
         return d_pipe_int
         
     
@@ -101,10 +137,8 @@ class Branch:
         """
         Returns the number of Branch objects created (used for tracking the number of instances created).
 
-        Returns
-        -------
-        int
-            Number of class instances
+        :return Number of class instances
+            
         """
         return cls.class_instances_created
     
@@ -115,7 +149,7 @@ class Branch:
             - Insulation damage mode (average or per element)
             - Level of damage in percent
 
-        -------
+
         """
         print(f"Insulation damage mode: {self.ins_damage_mode}")
         print(f"Damage (avg, per-element): {self.th_ins_damage_avg_m}, {self.th_ins_damage_elem_percent}")   
@@ -125,10 +159,8 @@ class Branch:
         """
         Sums lengths of all pipeline elements to get the length of the analysed branch.
 
-        Returns
-        -------
-        float
-            Length in [m]
+        :return l_branch: Length in [m]
+            
         """        
         l_branch = l_pipesection_supply_m.sum()
         #print(f"\nBranch length: {l_branch:.2f} m\n") 
@@ -139,7 +171,8 @@ class Branch:
     
     def calculate_supply(self):
         """
-        Performs calculations only for the supply branch.
+        Performs calculations for the supply line.
+        
         """        
         # (i) Branch setup:
         th_ins_supply_dict_i = self.th_ins_supply_dict
@@ -266,7 +299,8 @@ class Branch:
     
     def calculate_return(self):
         """
-        Performs calculations only for the return branch.
+        Performs calculations for the return line.
+        
         """  
         # (i) Check supply data:
         if data_output.df_supply_out.empty:                                    # checks if the calculation of the supply line has been run
@@ -411,6 +445,7 @@ class Branch:
         """
         Gathers total heat flow data from the supply and return calculations to calculate the total system heat flow:
             Q̇ _total_system = Q̇ _total_supply - Q̇ _total_return.
+            
         """  
         i = 0
         j = 0

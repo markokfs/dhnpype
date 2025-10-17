@@ -6,10 +6,7 @@ import data_output
 def plot_config() -> None:
     """
     Calls the plot_branch() function in plots.py and plots the supply and return pipelines on a map. It also plots insulation thicknesses of supply and return line from the plot_insulation() function. 
-
-    Returns
-    -------
-        None
+        
     """
     from plots import plot_branch, plot_insulation, plot_mass_flow
     plot_branch("all")                                                         # Plots the configuration of the pipeline
@@ -22,10 +19,7 @@ def plot_config() -> None:
 def plot_branch_dir() -> None:
     """
     Calls the plot_branch() function in plots.py and plots the supply and return configuration of the network separately. 
-
-    Returns
-    -------
-        None
+        
     """
     from plots import plot_branch
     plot_branch("supply")
@@ -35,10 +29,7 @@ def plot_branch_dir() -> None:
 def plot_temperature() -> None:
     """
     Calls the plot_supply_temperature() function in plots.py and plots the supply and return temperatures. 
-
-    Returns
-    -------
-        None
+        
     """
     from plots import plot_temperature
     plot_temperature("supply")
@@ -53,9 +44,6 @@ def plot_losses() -> None:
     
     Also calls the plot_output_heatmap() function in plots.py to plot interactive heatmaps of results in the supply and return line superimposed on the map. 
         
-    Returns
-    -------
-        None
     """
     from plots import plot_heat_flow_loss, plot_normalised_heat_flow_loss, plot_total_heat_flow_loss, plot_output_heatmap
     plot_heat_flow_loss("supply")
@@ -79,10 +67,7 @@ def plot_losses() -> None:
 def main():
     """
     Runs the analysis in a Python environment.
-    
-    Returns
-    -------
-        None
+        
     """
     # RUN THE CALCULATIONS
     network = branch.Branch()

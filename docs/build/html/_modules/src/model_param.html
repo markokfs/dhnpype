@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="Python" data-content_root="../../">
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -12,7 +12,7 @@
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=8eae9801"></script>
+      <script src="../../_static/documentation_options.js?v=8d563738"></script>
       <script src="../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
@@ -41,9 +41,9 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../a_overview.html">Software Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../a_overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../b_source.html">Modules &amp; Functions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../c_author.html">Author</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../c_author.html">Authors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../d_license.html">Software License</a></li>
 </ul>
 
@@ -80,52 +80,44 @@
 <a class="viewcode-back" href="../../bb_modules.html#src.model_param.ThermalCoeff">[docs]</a>
 <span class="nd">@dataclass</span> 
 <span class="k">class</span><span class="w"> </span><span class="nc">ThermalCoeff</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Contains thermal property data for different materials.</span>
+<span class="sd">    </span>
+<span class="sd">    :param h_water_w_per_m2k (float): The heat transfer coefficient for the pipe -  water to pipe wall in [W/m²K].</span>
+<span class="sd">    :param h_surface_w_per_m2k (float): The heat transfer coefficient for the insulation -  insulation to surface air in [W/m²K].</span>
+<span class="sd">    :param h_channel_w_per_m2k (float): The heat transfer coefficient for the insulation -  insulation to channel air in [W/m²K].</span>
+<span class="sd">    :param h_soil_w_per_m2k (float): The heat transfer coefficient for the insulation -  insulation to surrounding soil in [W/m²K].</span>
+<span class="sd">    :param k_pipe_w_per_mk (float): Thermal conductivity of the pipe material in [W/mK].</span>
+<span class="sd">    :param k_ins_w_per_mk (float): Thermal conductivity of intact insulation in [W/mK].</span>
+<span class="sd">    :param k_ins_damaged_w_per_mk (float): Thermal conductivity of the damaged insulation in [W/mK]. Default: same as intact insulation.</span>
+<span class="sd">        </span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Convective heat transfer coefficients (e.g. solid-fluid)</span>
-    <span class="n">h_water_w_per_m2k</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">3000.0</span>                                          <span class="c1"># Internal pipe – water to pipe wall [W/m²K] </span>
-    <span class="n">h_surface_w_per_m2k</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">200.0</span>                                         <span class="c1"># To ambient air [W/m²K] </span>
-    <span class="n">h_channel_w_per_m2k</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">100.0</span>                                         <span class="c1"># To channel wall [W/m²K]</span>
-    <span class="n">h_soil_w_per_m2k</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">3.0</span>                                              <span class="c1"># To surrounding soil [W/m²K]</span>
+    <span class="n">h_water_w_per_m2k</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">3000.0</span>                                          
+    <span class="n">h_surface_w_per_m2k</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">200.0</span>                                         
+    <span class="n">h_channel_w_per_m2k</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">100.0</span>                                         
+    <span class="n">h_soil_w_per_m2k</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">3.0</span>                                              
     <span class="c1"># Conductivity coefficients (e.g. conduction through the materials)</span>
-    <span class="n">k_pipe_w_per_mk</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">43.0</span>                                              <span class="c1"># Thermal conductivity of the pipe material [W/mK]</span>
-    <span class="n">k_ins_w_per_mk</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.03</span>                                               <span class="c1"># Normal insulation [W/mK]</span>
-    <span class="n">k_ins_damaged_w_per_mk</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.03</span>                                       <span class="c1"># Damaged insulation (same value for now) [W/mK]</span></div>
+    <span class="n">k_pipe_w_per_mk</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">43.0</span>                                              
+    <span class="n">k_ins_w_per_mk</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.03</span>                                               
+    <span class="n">k_ins_damaged_w_per_mk</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.03</span>                                       </div>
 
 
 
 <div class="viewcode-block" id="PipeSectionLocation">
 <a class="viewcode-back" href="../../bb_modules.html#src.model_param.PipeSectionLocation">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">PipeSectionLocation</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Contains the names of locations where sections of the pipelines are installed. </span>
+<span class="sd">    </span>
+<span class="sd">    :param loc1 (str): channel</span>
+<span class="sd">    :param loc2 (str): surface</span>
+<span class="sd">    :param loc3 (str): soil</span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">loc1</span> <span class="o">=</span> <span class="s2">&quot;channel&quot;</span>
     <span class="n">loc2</span> <span class="o">=</span> <span class="s2">&quot;surface&quot;</span>
     <span class="n">loc3</span> <span class="o">=</span> <span class="s2">&quot;soil&quot;</span></div>
-
-
-
-<span class="w">    </span>
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">PIPE SECTION PROPERTIES</span>
-
-<span class="sd">Physical properties of the pipeline materials and environment.</span>
-
-<span class="sd">Sources:</span>
-<span class="sd">    - Water-to-steel convection: Engineers Edge</span>
-<span class="sd">    - Steel conductivity: Engineering Toolbox</span>
-<span class="sd">    - Polyurethane insulation conductivity: Engineering Toolbox</span>
-
-<span class="sd">── Water-to-pipe convection ─────────────────────────────────────────────────</span>
-<span class="sd">h_water_w_per_m2k = 3000                    # internal water-side heat transfer coefficient [W/m²K]</span>
-<span class="sd">k_pipe_w_per_mk = 43                        # thermal conductivity of steel pipe [W/mK]</span>
-
-<span class="sd">── Insulation ───────────────────────────────────────────────────────────────</span>
-<span class="sd">k_ins_w_per_mk = 0.03                       # thermal conductivity of new insulation (PUR) [W/mK]</span>
-<span class="sd">k_ins_damaged_w_per_mk = 0.03               # thermal conductivity of damaged insulation (same) [W/mK]</span>
-
-<span class="sd">── External convection coefficients ─────────────────────────────────────────</span>
-<span class="sd">h_ambent_w_per_m2k = 200                    # external air-side heat transfer coefficient (outdoor) [W/m²K]</span>
-<span class="sd">h_channel_w_per_m2k = 100                   # in-channel natural convection estimate [W/m²K]</span>
-<span class="sd">h_soil_w_per_m2k = 3                        # buried pipes, rough guess for soil convection [W/m²K]</span>
-<span class="sd">&quot;&quot;&quot;</span>
-
 
 </pre></div>
 

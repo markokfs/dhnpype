@@ -18,6 +18,15 @@ import data_input
 
 ### (1) INTERACTIVE PLOTTING - Plotly
 def plot_branch(direction:str) -> None:
+    """
+    Reads data from the input DataFrames and plots the configuration of the analysed branch on top of a map. 
+    
+    :param direction: Chooses the direction of the pipeline to plot. Options:
+            - 'supply': Plots only the supply line.
+            - 'return': Plots only the return line.
+            - 'all': Plots both lines on the same map.
+        
+    """    
     if data_input.df_supply_in.empty:
         print("Input DataFrame is empty. No data is available for plotting.")
         return
@@ -98,7 +107,15 @@ def plot_branch(direction:str) -> None:
     fig.show()
 
 
-def plot_insulation(direction:str) -> None:  
+def plot_insulation(direction:str) -> None: 
+    """
+    Reads data from the input DataFrames and plots insulation thickness of the analysed branch on top of a map. 
+    
+    :param direction: Chooses the direction of the pipeline to plot. Options:
+            - 'supply': Plots only the supply line.
+            - 'return': Plots only the return line.
+        
+    """
     if data_input.df_supply_in.empty:
         print("Input DataFrame is empty. No data is available for plotting.")
         return
@@ -193,18 +210,13 @@ def plot_insulation(direction:str) -> None:
 
 def plot_output_heatmap(direction:str, value_column:str) -> None:
     """
-    Plot line segments on a map using a single DataFrame that contains
-    longitude, latitude, and a value column for coloring.
-
-    Parameters
-    ----------
-    direction : str
-        Pipeline direction flow - 'supply' or 'return'.
-    value_column : str
-        Column in the dataframe to use for coloring the segments.
-    Returns
-    -------
-    None
+    Reads data from the output DataFrames and plots line segments on a map using longitude, latitude, and a value column for colouring.
+    
+    :param direction: Chooses the direction of the pipeline to plot. Options:
+            - 'supply': Plots only the supply line.
+            - 'return': Plots only the return line.
+    :param value_column: Column in the DataFrame to use for coloring the segments.
+        
     """
     if direction.lower() == "supply":
         data_df = data_output.df_supply_out
@@ -310,6 +322,14 @@ def plot_output_heatmap(direction:str, value_column:str) -> None:
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  
 ### STATIC PLOTTING - matplotlib 
 def plot_temperature(direction:str) -> None:
+    """
+    Reads data from the output DataFrames and plots the temperature distribution along the lenght of the pipeline.
+    
+    :param direction: Chooses the direction of the pipeline to plot. Options:
+            - 'supply': Plots only the supply line.
+            - 'return': Plots only the return line.
+        
+    """
     if direction.lower() == "supply":
         df_out = data_output.df_supply_out
         title = "Supply temperature"
@@ -335,6 +355,14 @@ def plot_temperature(direction:str) -> None:
 
 
 def plot_heat_flow_loss(direction:str) -> None:
+    """
+    Reads data from the output DataFrames and plots the heat flow loss distribution along the lenght of the pipeline.
+    
+    :param direction: Chooses the direction of the pipeline to plot. Options:
+            - 'supply': Plots only the supply line.
+            - 'return': Plots only the return line.
+        
+    """
     if direction.lower() == "supply":
         df_out = data_output.df_supply_out
         title = "Heat flow loss - supply"
@@ -360,6 +388,14 @@ def plot_heat_flow_loss(direction:str) -> None:
     
   
 def plot_normalised_heat_flow_loss(direction:str) -> None:
+    """
+    Reads data from the output DataFrames and plots the normalised heat flow loss distribution along the lenght of the pipeline.
+    
+    :param direction: Chooses the direction of the pipeline to plot. Options:
+            - 'supply': Plots only the supply line.
+            - 'return': Plots only the return line.
+        
+    """
     if direction.lower() == "supply":
         df_out = data_output.df_supply_out
         title = "Normalised heat flow loss - supply"
@@ -385,6 +421,14 @@ def plot_normalised_heat_flow_loss(direction:str) -> None:
     
 
 def plot_total_heat_flow_loss(direction:str) -> None:
+    """
+    Reads data from the output DataFrames and plots the cumulative heat flow loss distribution along the lenght of the pipeline.
+    
+    :param direction: Chooses the direction of the pipeline to plot. Options:
+            - 'supply': Plots only the supply line.
+            - 'return': Plots only the return line.
+        
+    """
     if direction.lower() == "supply":
         df_out = data_output.df_supply_out
         title = "Total heat flow loss - supply"
@@ -410,6 +454,14 @@ def plot_total_heat_flow_loss(direction:str) -> None:
     
 
 def plot_mass_flow(direction:str) -> None:
+    """
+    Reads data from the output DataFrames and plots the mass flow distribution along the lenght of the pipeline.
+    
+    :param direction: Chooses the direction of the pipeline to plot. Options:
+            - 'supply': Plots only the supply line.
+            - 'return': Plots only the return line.
+    
+    """
     if direction.lower() == "supply":
         df_out = data_output.df_supply_out
         title = "Mass flow - supply"
@@ -435,6 +487,14 @@ def plot_mass_flow(direction:str) -> None:
     
 
 def plot_heat_flow_loss_nodes(direction:str) -> None:
+    """
+    Reads data from the output DataFrames and plots nodes using longitude, latitude, and the heat flow loss value column for colouring.
+    
+    :param direction: Chooses the direction of the pipeline to plot. Options:
+            - 'supply': Plots only the supply line.
+            - 'return': Plots only the return line.
+    
+    """
     if direction.lower() == "supply":
         df_out = data_output.df_supply_out
         title = "Heat flow loss (nodes) - supply"

@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="Python" data-content_root="../../">
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -12,7 +12,7 @@
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=8eae9801"></script>
+      <script src="../../_static/documentation_options.js?v=8d563738"></script>
       <script src="../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
@@ -41,9 +41,9 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../a_overview.html">Software Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../a_overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../b_source.html">Modules &amp; Functions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../c_author.html">Author</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../c_author.html">Authors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../d_license.html">Software License</a></li>
 </ul>
 
@@ -82,10 +82,7 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">plot_config</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Calls the plot_branch() function in plots.py and plots the supply and return pipelines on a map. It also plots insulation thicknesses of supply and return line from the plot_insulation() function. </span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">        None</span>
+<span class="sd">        </span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">plots</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_branch</span><span class="p">,</span> <span class="n">plot_insulation</span><span class="p">,</span> <span class="n">plot_mass_flow</span>
     <span class="n">plot_branch</span><span class="p">(</span><span class="s2">&quot;all&quot;</span><span class="p">)</span>                                                         <span class="c1"># Plots the configuration of the pipeline</span>
@@ -101,10 +98,7 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">plot_branch_dir</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Calls the plot_branch() function in plots.py and plots the supply and return configuration of the network separately. </span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">        None</span>
+<span class="sd">        </span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">plots</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_branch</span>
     <span class="n">plot_branch</span><span class="p">(</span><span class="s2">&quot;supply&quot;</span><span class="p">)</span>
@@ -117,10 +111,7 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">plot_temperature</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Calls the plot_supply_temperature() function in plots.py and plots the supply and return temperatures. </span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">        None</span>
+<span class="sd">        </span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">plots</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_temperature</span>
     <span class="n">plot_temperature</span><span class="p">(</span><span class="s2">&quot;supply&quot;</span><span class="p">)</span>
@@ -138,9 +129,6 @@
 <span class="sd">    </span>
 <span class="sd">    Also calls the plot_output_heatmap() function in plots.py to plot interactive heatmaps of results in the supply and return line superimposed on the map. </span>
 <span class="sd">        </span>
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">        None</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">plots</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_heat_flow_loss</span><span class="p">,</span> <span class="n">plot_normalised_heat_flow_loss</span><span class="p">,</span> <span class="n">plot_total_heat_flow_loss</span><span class="p">,</span> <span class="n">plot_output_heatmap</span>
     <span class="n">plot_heat_flow_loss</span><span class="p">(</span><span class="s2">&quot;supply&quot;</span><span class="p">)</span>
@@ -167,10 +155,7 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Runs the analysis in a Python environment.</span>
-<span class="sd">    </span>
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">        None</span>
+<span class="sd">        </span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># RUN THE CALCULATIONS</span>
     <span class="n">network</span> <span class="o">=</span> <span class="n">branch</span><span class="o">.</span><span class="n">Branch</span><span class="p">()</span>

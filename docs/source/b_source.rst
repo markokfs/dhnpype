@@ -1,16 +1,16 @@
 Modules & Functions
 ===================
 
-Subpackage
-----------
+Utilities Subpackage
+--------------------
 
 .. toctree::
    :maxdepth: 4
 
    ba_utils
    
-Modules
--------
+Main Modules
+------------
 
 .. toctree::
    :maxdepth: 4

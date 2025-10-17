@@ -195,7 +195,7 @@ def calculate_insulation_thickness(location:str, d_pipe_nominal:str, th_insulati
     :param location: 'channel', 'surface', or 'soil'
     :param d_pipe_external: External pipe diameter at the given index in [m]
     :param th_insulation_dict: Dictionary with thickness data
-    :return: th_insulation: Insulation thickness in [m]
+    :return th_insulation: Insulation thickness in [m]
     
     """
     if location not in th_insulation_dict:
