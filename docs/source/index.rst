@@ -1,6 +1,17 @@
-DHNpype documentation
+.. image:: dhnpype_logo.png
+   :width: 70px
+   :height: 70px
+   :align: left
+
+
+DHNpype Documentation
 =====================
 
+.. raw:: html
+    
+    <div style="margin-top: 60px;"></div>
+
+ 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
@@ -9,3 +20,8 @@ DHNpype documentation
    b_source
    c_author
    d_license
+
+   
+Index
+=====
+* :ref:`genindex`

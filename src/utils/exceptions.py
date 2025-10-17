@@ -1,6 +1,6 @@
 class SupplyDataMissingError(Exception):
     """
-    Raised when supply data is missing before return calculation.
+    A custom exception raised when supply data is missing before return calculation.
     """
     pass
 

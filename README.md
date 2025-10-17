@@ -5,9 +5,9 @@
 ---
 
 
-## Project Overview
+## Overview
 
-**DHNpype** models steady-state heat losses and flow properties for a single branch (supply + return) of a district heating & cooling network pipeline.
+**DHNpype** models steady-state heat losses and flow properties for a single branch (supply and return) of a district heating & cooling network pipeline.
 
 The software was developed as part of a reserach project at the University of Ljubljana (Slovenia) to support studies of energy transformation scenarios. 
 
@@ -16,7 +16,7 @@ Support from the 3DIVERSE project (www.3dvierse.eu, LIFE21-CET-PDA-3DiVERSE, No.
 
 ## It calculates:
 
-	- Section-by-section distribution of heat flow losses 
+	- Section-by-section distribution of heat flow losses (absolute and normalised)
 	- Temperature and mass flow evolution along the pipeline
 	- System-level cumulative losses
 	- Total heat flow in the system
@@ -31,7 +31,7 @@ Support from the 3DIVERSE project (www.3dvierse.eu, LIFE21-CET-PDA-3DiVERSE, No.
 	- Constant thermal conductivities
 
 
-## Project Structure
+## Project structure
 
 dhnpype/
 ├── data
@@ -59,7 +59,7 @@ dhnpype/
 │   ├── figures
 │   │   └── logo.png                      # dhnpype logo
 │   └── one_branch.ipynb                  # An example of a 1-branch network simulation in a Jupyter notebook        
-├── AUTHOR                                # List of contributors
+├── AUTHORS                               # List of contributors
 ├── LICENSE                               # Software license
 ├── README.md                             # This file
 └── requirements.txt                      # Package dependencies

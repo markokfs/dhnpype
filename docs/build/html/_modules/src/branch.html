@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="Python" data-content_root="../../">
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -12,7 +12,7 @@
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=8eae9801"></script>
+      <script src="../../_static/documentation_options.js?v=8d563738"></script>
       <script src="../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
@@ -41,9 +41,9 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../a_overview.html">Software Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../a_overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../b_source.html">Modules &amp; Functions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../c_author.html">Author</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../c_author.html">Authors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../d_license.html">Software License</a></li>
 </ul>
 
@@ -95,7 +95,8 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">model_param</span><span class="w"> </span><span class="kn">import</span> <span class="n">ThermalCoeff</span><span class="p">,</span> <span class="n">PipeSectionLocation</span>
 
 
-<span class="c1"># Getting thickness data</span>
+<span class="c1">#==============================================================================</span>
+<span class="c1"># Reading thickness data from the JSON data:</span>
 <span class="n">thickness_data_location</span> <span class="o">=</span> <span class="s2">&quot;../data/insulation_thickness.json&quot;</span>
 
 <span class="k">try</span><span class="p">:</span>
@@ -107,10 +108,32 @@
     <span class="n">th_mm</span> <span class="o">=</span> <span class="p">{}</span>
 
 
-<span class="c1"># Calculations</span>
+<span class="c1">#==========================| CALCULATIONS |====================================</span>
 <div class="viewcode-block" id="Branch">
 <a class="viewcode-back" href="../../bb_modules.html#src.branch.Branch">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">Branch</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Evaluates a single branch of a district heatng or cooling network.</span>
+<span class="sd">    Performs calculations of pipe sections sequentiall for the supply line first and then for the return line.</span>
+<span class="sd">    </span>
+<span class="sd">    Attributes:</span>
+<span class="sd">        initial_values (None): Data required to set the initial configuration of the system. Refer to data in the BranchInitialConfig class in config_data.py.</span>
+<span class="sd">        th_values (None): Pipe and insulation thickness data. Data can be read from a dedicated JSON file.</span>
+<span class="sd">        damage_mode (str): Defines how insulation damage is modelled. See the __init__ definition for more information.</span>
+<span class="sd">        damage (float): Amaunt of insulation damage. See the __initi__ definition for more information.</span>
+<span class="sd">        </span>
+<span class="sd">    Helper methods:</span>
+<span class="sd">        _calculate_internal_diameter()</span>
+<span class="sd">        get_class_instance_count()</span>
+<span class="sd">        print_input_data()</span>
+<span class="sd">        calculate_branch_length()</span>
+<span class="sd">        </span>
+<span class="sd">    Calculation methods:</span>
+<span class="sd">        calculate_supply()</span>
+<span class="sd">        calculate_return()</span>
+<span class="sd">        calculate_system_heat_flow</span>
+<span class="sd">            </span>
+<span class="sd">    &quot;&quot;&quot;</span>
     
     <span class="n">class_instances_created</span> <span class="o">=</span> <span class="mi">0</span>                                                <span class="c1"># used to check the number of branches created with the Branch class (class attribute only!)</span>
 
@@ -118,6 +141,19 @@
     <span class="n">_DAMAGE_MODE_ELEMENT</span> <span class="o">=</span> <span class="s2">&quot;element&quot;</span>
       
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">initial_values</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">th_values</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Constructs attributes for the Branch class.</span>
+<span class="sd">        </span>
+<span class="sd">        :param initial_values: Initial configuration data read from the BranchInitialConfig. Alternatively, values can be passed directly to the class (suggested form: dict).</span>
+<span class="sd">        :param th_values: Pipe and insulation thickness data from &#39;insulation_thickness.json&#39; in the &#39;data&#39; folder. Alternatively, values can be passed directly to the class (suggested form: dict)</span>
+<span class="sd">        :param damage_mode (optional): Defines how insulation damage is modelled. Available options: &#39;average&#39; or &#39;element&#39;. Default: &#39;average&#39;.</span>
+<span class="sd">                                   Option &#39;average&#39;: Average residual thickness value is assigned to all sections of the pipeline with damaged insulation. </span>
+<span class="sd">                                   Option &#39;element&#39;: Each element has residual thickness assigned in the input file.</span>
+<span class="sd">        :param damage (optional): Value(s) of damaged insulation thickness. For the &#39;average&#39; damage mode, the thickness value is defined in the BranchInitialConfig class in config_data.py. Alternatively, the value can be passed directly to the class.</span>
+<span class="sd">                                For the &#39;element&#39; damage mode, thickness values are read from the input file as percentage of intact thickness for the section&#39;s nominal diameter.</span>
+<span class="sd">        </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        
         <span class="bp">self</span><span class="o">.</span><span class="n">iv</span> <span class="o">=</span> <span class="n">initial_values</span> <span class="ow">or</span> <span class="n">BranchInitialConfig</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">th_all</span> <span class="o">=</span> <span class="n">th_values</span> <span class="ow">or</span> <span class="n">th_mm</span>                                       <span class="c1"># pipe &amp; insulation thickness from data in the JSON file</span>
         
@@ -154,21 +190,21 @@
    
     <span class="c1">#______________________ Helper methods ____________________________________</span>
       
-    <span class="k">def</span><span class="w"> </span><span class="nf">_calculate_internal_diameter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">d_nominal</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">d_external_m</span><span class="p">:</span><span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_calculate_internal_diameter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">d_nominal</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">d_external</span><span class="p">:</span><span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the pipe internal diameter for a given nominal pipe size.</span>
 <span class="sd">        Used to calculate initial values.</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        float</span>
-<span class="sd">            Internal diameter in [m]</span>
+<span class="sd">        </span>
+<span class="sd">        :param d_nominal: Nominal diameter of a pipe section in [mm]</span>
+<span class="sd">        :param d_external: External diameter of a pipe section in [m]</span>
+<span class="sd">        :return d_pipe_int: Internal diameter in [m]</span>
+<span class="sd">            </span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">d_nominal</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">th_pipe</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Nominal pipe size </span><span class="si">{</span><span class="n">d_nominal</span><span class="si">}</span><span class="s2"> not found in pipe wall thickness data. Please choose a different pipe size.&quot;</span><span class="p">)</span>
         
-        <span class="n">th_pipe_m</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">th_pipe</span><span class="p">[</span><span class="n">d_nominal</span><span class="p">]</span> <span class="o">/</span> <span class="mi">1000</span>                             <span class="c1"># pipe thickness</span>
-        <span class="n">d_pipe_int</span> <span class="o">=</span> <span class="n">d_external_m</span> <span class="o">-</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">th_pipe_m</span><span class="p">)</span>                            <span class="c1"># pipe internal diameter         </span>
+        <span class="n">th_pipe</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">th_pipe</span><span class="p">[</span><span class="n">d_nominal</span><span class="p">]</span> <span class="o">/</span> <span class="mi">1000</span>                               <span class="c1"># pipe thickness [m]</span>
+        <span class="n">d_pipe_int</span> <span class="o">=</span> <span class="n">d_external</span> <span class="o">-</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">th_pipe</span><span class="p">)</span>                                <span class="c1"># pipe internal diameter [m]         </span>
         <span class="k">return</span> <span class="n">d_pipe_int</span>
         
     
@@ -179,10 +215,8 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the number of Branch objects created (used for tracking the number of instances created).</span>
 
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        int</span>
-<span class="sd">            Number of class instances</span>
+<span class="sd">        :return Number of class instances</span>
+<span class="sd">            </span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">class_instances_created</span></div>
 
@@ -196,7 +230,7 @@
 <span class="sd">            - Insulation damage mode (average or per element)</span>
 <span class="sd">            - Level of damage in percent</span>
 
-<span class="sd">        -------</span>
+
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Insulation damage mode: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">ins_damage_mode</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Damage (avg, per-element): </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">th_ins_damage_avg_m</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">th_ins_damage_elem_percent</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>   </div>
@@ -209,10 +243,8 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Sums lengths of all pipeline elements to get the length of the analysed branch.</span>
 
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        float</span>
-<span class="sd">            Length in [m]</span>
+<span class="sd">        :return l_branch: Length in [m]</span>
+<span class="sd">            </span>
 <span class="sd">        &quot;&quot;&quot;</span>        
         <span class="n">l_branch</span> <span class="o">=</span> <span class="n">l_pipesection_supply_m</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
         <span class="c1">#print(f&quot;\nBranch length: {l_branch:.2f} m\n&quot;) </span>
@@ -226,7 +258,8 @@
 <a class="viewcode-back" href="../../bb_modules.html#src.branch.Branch.calculate_supply">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">calculate_supply</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Performs calculations only for the supply branch.</span>
+<span class="sd">        Performs calculations for the supply line.</span>
+<span class="sd">        </span>
 <span class="sd">        &quot;&quot;&quot;</span>        
         <span class="c1"># (i) Branch setup:</span>
         <span class="n">th_ins_supply_dict_i</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">th_ins_supply_dict</span>
@@ -356,7 +389,8 @@
 <a class="viewcode-back" href="../../bb_modules.html#src.branch.Branch.calculate_return">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">calculate_return</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Performs calculations only for the return branch.</span>
+<span class="sd">        Performs calculations for the return line.</span>
+<span class="sd">        </span>
 <span class="sd">        &quot;&quot;&quot;</span>  
         <span class="c1"># (i) Check supply data:</span>
         <span class="k">if</span> <span class="n">data_output</span><span class="o">.</span><span class="n">df_supply_out</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>                                    <span class="c1"># checks if the calculation of the supply line has been run</span>
@@ -504,6 +538,7 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Gathers total heat flow data from the supply and return calculations to calculate the total system heat flow:</span>
 <span class="sd">            Q̇ _total_system = Q̇ _total_supply - Q̇ _total_return.</span>
+<span class="sd">            </span>
 <span class="sd">        &quot;&quot;&quot;</span>  
         <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span>

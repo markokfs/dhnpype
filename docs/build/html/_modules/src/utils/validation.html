@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="Python" data-content_root="../../../">
+<html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -12,7 +12,7 @@
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../_static/documentation_options.js?v=8eae9801"></script>
+      <script src="../../../_static/documentation_options.js?v=8d563738"></script>
       <script src="../../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
@@ -41,9 +41,9 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../a_overview.html">Software Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../a_overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../b_source.html">Modules &amp; Functions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../c_author.html">Author</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../c_author.html">Authors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../d_license.html">Software License</a></li>
 </ul>
 
@@ -82,22 +82,17 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Validates and processes the insulation damage percentage input.</span>
 
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    mode : str</span>
-<span class="sd">        The mode of damage input (&#39;average&#39; or &#39;element&#39;).</span>
 
-<span class="sd">    percent : float, int, or list</span>
-<span class="sd">        The value(s) representing insulation damage percentage.</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    tuple</span>
-<span class="sd">        (average_percent, element_percent_list)</span>
+<span class="sd">    :param mode: The mode of damage input (&#39;average&#39; or &#39;element&#39;).</span>
+<span class="sd">    :param percent: The value(s) representing insulation damage percentage.</span>
+<span class="sd">    :returns: </span>
+<span class="sd">        average_percent </span>
+<span class="sd">        element_percent_list</span>
 
 <span class="sd">    Raises</span>
 <span class="sd">    ------</span>
-<span class="sd">    TypeError, ValueError</span>
+<span class="sd">        TypeError, ValueError</span>
+<span class="sd">    </span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;average&quot;</span><span class="p">:</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">percent</span><span class="p">,</span> <span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">)):</span>

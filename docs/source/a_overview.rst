@@ -1,5 +1,5 @@
-Software Overview
-=================
+Overview
+========
 
 *DHNpype* is a simulation and analysis tool designed for quick evaluations of district heating & cooling network performance, particularly focused on pipe insulation, heat flow losses, and thermal behavior. 
 

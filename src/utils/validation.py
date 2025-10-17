@@ -6,22 +6,17 @@ def validate_damage(mode: str, percent: Union[float, int, List[Union[float, int]
     """
     Validates and processes the insulation damage percentage input.
 
-    Parameters
-    ----------
-    mode : str
-        The mode of damage input ('average' or 'element').
 
-    percent : float, int, or list
-        The value(s) representing insulation damage percentage.
-
-    Returns
-    -------
-    tuple
-        (average_percent, element_percent_list)
+    :param mode: The mode of damage input ('average' or 'element').
+    :param percent: The value(s) representing insulation damage percentage.
+    :returns: 
+        average_percent 
+        element_percent_list
 
     Raises
     ------
-    TypeError, ValueError
+        TypeError, ValueError
+    
     """
     if mode == "average":
         if not isinstance(percent, (float, int)):

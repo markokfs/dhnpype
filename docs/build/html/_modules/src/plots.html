@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="Python" data-content_root="../../">
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -12,7 +12,7 @@
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=8eae9801"></script>
+      <script src="../../_static/documentation_options.js?v=8d563738"></script>
       <script src="../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
@@ -41,9 +41,9 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../a_overview.html">Software Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../a_overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../b_source.html">Modules &amp; Functions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../c_author.html">Author</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../c_author.html">Authors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../d_license.html">Software License</a></li>
 </ul>
 
@@ -94,6 +94,15 @@
 <div class="viewcode-block" id="plot_branch">
 <a class="viewcode-back" href="../../bb_modules.html#src.plots.plot_branch">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">plot_branch</span><span class="p">(</span><span class="n">direction</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Reads data from the input DataFrames and plots the configuration of the analysed branch on top of a map. </span>
+<span class="sd">    </span>
+<span class="sd">    :param direction: Chooses the direction of the pipeline to plot. Options:</span>
+<span class="sd">            - &#39;supply&#39;: Plots only the supply line.</span>
+<span class="sd">            - &#39;return&#39;: Plots only the return line.</span>
+<span class="sd">            - &#39;all&#39;: Plots both lines on the same map.</span>
+<span class="sd">        </span>
+<span class="sd">    &quot;&quot;&quot;</span>    
     <span class="k">if</span> <span class="n">data_input</span><span class="o">.</span><span class="n">df_supply_in</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Input DataFrame is empty. No data is available for plotting.&quot;</span><span class="p">)</span>
         <span class="k">return</span>
@@ -177,7 +186,15 @@
 
 <div class="viewcode-block" id="plot_insulation">
 <a class="viewcode-back" href="../../bb_modules.html#src.plots.plot_insulation">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">plot_insulation</span><span class="p">(</span><span class="n">direction</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>  
+<span class="k">def</span><span class="w"> </span><span class="nf">plot_insulation</span><span class="p">(</span><span class="n">direction</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span> 
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Reads data from the input DataFrames and plots insulation thickness of the analysed branch on top of a map. </span>
+<span class="sd">    </span>
+<span class="sd">    :param direction: Chooses the direction of the pipeline to plot. Options:</span>
+<span class="sd">            - &#39;supply&#39;: Plots only the supply line.</span>
+<span class="sd">            - &#39;return&#39;: Plots only the return line.</span>
+<span class="sd">        </span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">data_input</span><span class="o">.</span><span class="n">df_supply_in</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Input DataFrame is empty. No data is available for plotting.&quot;</span><span class="p">)</span>
         <span class="k">return</span>
@@ -275,18 +292,13 @@
 <a class="viewcode-back" href="../../bb_modules.html#src.plots.plot_output_heatmap">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">plot_output_heatmap</span><span class="p">(</span><span class="n">direction</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">value_column</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Plot line segments on a map using a single DataFrame that contains</span>
-<span class="sd">    longitude, latitude, and a value column for coloring.</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    direction : str</span>
-<span class="sd">        Pipeline direction flow - &#39;supply&#39; or &#39;return&#39;.</span>
-<span class="sd">    value_column : str</span>
-<span class="sd">        Column in the dataframe to use for coloring the segments.</span>
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    None</span>
+<span class="sd">    Reads data from the output DataFrames and plots line segments on a map using longitude, latitude, and a value column for colouring.</span>
+<span class="sd">    </span>
+<span class="sd">    :param direction: Chooses the direction of the pipeline to plot. Options:</span>
+<span class="sd">            - &#39;supply&#39;: Plots only the supply line.</span>
+<span class="sd">            - &#39;return&#39;: Plots only the return line.</span>
+<span class="sd">    :param value_column: Column in the DataFrame to use for coloring the segments.</span>
+<span class="sd">        </span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">direction</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;supply&quot;</span><span class="p">:</span>
         <span class="n">data_df</span> <span class="o">=</span> <span class="n">data_output</span><span class="o">.</span><span class="n">df_supply_out</span>
@@ -395,6 +407,14 @@
 <div class="viewcode-block" id="plot_temperature">
 <a class="viewcode-back" href="../../bb_modules.html#src.plots.plot_temperature">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">plot_temperature</span><span class="p">(</span><span class="n">direction</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Reads data from the output DataFrames and plots the temperature distribution along the lenght of the pipeline.</span>
+<span class="sd">    </span>
+<span class="sd">    :param direction: Chooses the direction of the pipeline to plot. Options:</span>
+<span class="sd">            - &#39;supply&#39;: Plots only the supply line.</span>
+<span class="sd">            - &#39;return&#39;: Plots only the return line.</span>
+<span class="sd">        </span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">direction</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;supply&quot;</span><span class="p">:</span>
         <span class="n">df_out</span> <span class="o">=</span> <span class="n">data_output</span><span class="o">.</span><span class="n">df_supply_out</span>
         <span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Supply temperature&quot;</span>
@@ -423,6 +443,14 @@
 <div class="viewcode-block" id="plot_heat_flow_loss">
 <a class="viewcode-back" href="../../bb_modules.html#src.plots.plot_heat_flow_loss">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">plot_heat_flow_loss</span><span class="p">(</span><span class="n">direction</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Reads data from the output DataFrames and plots the heat flow loss distribution along the lenght of the pipeline.</span>
+<span class="sd">    </span>
+<span class="sd">    :param direction: Chooses the direction of the pipeline to plot. Options:</span>
+<span class="sd">            - &#39;supply&#39;: Plots only the supply line.</span>
+<span class="sd">            - &#39;return&#39;: Plots only the return line.</span>
+<span class="sd">        </span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">direction</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;supply&quot;</span><span class="p">:</span>
         <span class="n">df_out</span> <span class="o">=</span> <span class="n">data_output</span><span class="o">.</span><span class="n">df_supply_out</span>
         <span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Heat flow loss - supply&quot;</span>
@@ -451,6 +479,14 @@
 <div class="viewcode-block" id="plot_normalised_heat_flow_loss">
 <a class="viewcode-back" href="../../bb_modules.html#src.plots.plot_normalised_heat_flow_loss">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">plot_normalised_heat_flow_loss</span><span class="p">(</span><span class="n">direction</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Reads data from the output DataFrames and plots the normalised heat flow loss distribution along the lenght of the pipeline.</span>
+<span class="sd">    </span>
+<span class="sd">    :param direction: Chooses the direction of the pipeline to plot. Options:</span>
+<span class="sd">            - &#39;supply&#39;: Plots only the supply line.</span>
+<span class="sd">            - &#39;return&#39;: Plots only the return line.</span>
+<span class="sd">        </span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">direction</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;supply&quot;</span><span class="p">:</span>
         <span class="n">df_out</span> <span class="o">=</span> <span class="n">data_output</span><span class="o">.</span><span class="n">df_supply_out</span>
         <span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Normalised heat flow loss - supply&quot;</span>
@@ -479,6 +515,14 @@
 <div class="viewcode-block" id="plot_total_heat_flow_loss">
 <a class="viewcode-back" href="../../bb_modules.html#src.plots.plot_total_heat_flow_loss">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">plot_total_heat_flow_loss</span><span class="p">(</span><span class="n">direction</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Reads data from the output DataFrames and plots the cumulative heat flow loss distribution along the lenght of the pipeline.</span>
+<span class="sd">    </span>
+<span class="sd">    :param direction: Chooses the direction of the pipeline to plot. Options:</span>
+<span class="sd">            - &#39;supply&#39;: Plots only the supply line.</span>
+<span class="sd">            - &#39;return&#39;: Plots only the return line.</span>
+<span class="sd">        </span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">direction</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;supply&quot;</span><span class="p">:</span>
         <span class="n">df_out</span> <span class="o">=</span> <span class="n">data_output</span><span class="o">.</span><span class="n">df_supply_out</span>
         <span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Total heat flow loss - supply&quot;</span>
@@ -507,6 +551,14 @@
 <div class="viewcode-block" id="plot_mass_flow">
 <a class="viewcode-back" href="../../bb_modules.html#src.plots.plot_mass_flow">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">plot_mass_flow</span><span class="p">(</span><span class="n">direction</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Reads data from the output DataFrames and plots the mass flow distribution along the lenght of the pipeline.</span>
+<span class="sd">    </span>
+<span class="sd">    :param direction: Chooses the direction of the pipeline to plot. Options:</span>
+<span class="sd">            - &#39;supply&#39;: Plots only the supply line.</span>
+<span class="sd">            - &#39;return&#39;: Plots only the return line.</span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">direction</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;supply&quot;</span><span class="p">:</span>
         <span class="n">df_out</span> <span class="o">=</span> <span class="n">data_output</span><span class="o">.</span><span class="n">df_supply_out</span>
         <span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Mass flow - supply&quot;</span>
@@ -535,6 +587,14 @@
 <div class="viewcode-block" id="plot_heat_flow_loss_nodes">
 <a class="viewcode-back" href="../../bb_modules.html#src.plots.plot_heat_flow_loss_nodes">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">plot_heat_flow_loss_nodes</span><span class="p">(</span><span class="n">direction</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Reads data from the output DataFrames and plots nodes using longitude, latitude, and the heat flow loss value column for colouring.</span>
+<span class="sd">    </span>
+<span class="sd">    :param direction: Chooses the direction of the pipeline to plot. Options:</span>
+<span class="sd">            - &#39;supply&#39;: Plots only the supply line.</span>
+<span class="sd">            - &#39;return&#39;: Plots only the return line.</span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">direction</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;supply&quot;</span><span class="p">:</span>
         <span class="n">df_out</span> <span class="o">=</span> <span class="n">data_output</span><span class="o">.</span><span class="n">df_supply_out</span>
         <span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Heat flow loss (nodes) - supply&quot;</span>
